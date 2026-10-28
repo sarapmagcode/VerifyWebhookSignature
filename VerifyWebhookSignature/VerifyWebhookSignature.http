@@ -1,0 +1,29 @@
+@VerifyWebhookSignature_HostAddress = https://localhost:7233
+
+###
+// "###" is called a request delimiter: what comes after it is for a different request.
+// Refer to https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-10.0&tabs=visual-studio#test-posting-data
+
+POST {{VerifyWebhookSignature_HostAddress}}/webhooks/secure
+Content-Type: application/json
+Host: play.hook0.com
+User-Agent: hook0-output-worker/1.0.7
+X-Custom-Header: my-value
+X-Event-Id: 01a17b21-0438-79b7-a108-90a710e70143
+X-Event-Type: user.account.created
+X-Forwarded-For: 112.200.161.69, 162.158.190.6
+X-Forwarded-Host: play.hook0.com
+X-Forwarded-Port: 443
+X-Forwarded-Proto: https
+X-Forwarded-Server: pm1
+X-Hook0-Signature: t=1793067124,h=content-type x-custom-header x-event-id x-event-type,v1=39a9b17c6d441b6a372c999dc7eccffddb8e8381c1fe3440a615a3b72777b23a
+X-Real-Ip: 112.200.161.69
+
+// Refer to https://weblog.west-wind.com/posts/2022/Jul/07/Back-to-Basics-Custom-HTTP-Response-Header-Manipulation-in-ASPNET-Core
+
+{
+  "user_id": 123,
+  "email": "john.doe@example.com"
+}
+
+###
