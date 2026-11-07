@@ -39,12 +39,12 @@ static bool VerifyWebhookSignature(string rawBody, string signature, IHeaderDict
     List<string> headerNames = parts["h"].Split(" ").ToList();
 
     // Get the actual headers from the request
-    var valueList = new List<string>();
+    var valueList = new List<StringValues>();
     foreach (string h in headerNames)
     {
         if (!StringValues.IsNullOrEmpty(headers[h]))
         {
-            valueList.Add(headers[h].ToString().ToLowerInvariant());
+            valueList.Add(headers[h]);
         }
         else
         {
